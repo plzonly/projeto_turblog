@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <title>TurBlog&copy;</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
             <h1 class="titulo">TurBlog&copy;</h1>
             <ul class="navbar">
                 <li class="inicio">
-                    <a href="#">Início</a>
+                    <a href="#home">Início</a>
                 </li>
                 <li class="divisão">|</li>
                 <li>
@@ -21,24 +22,25 @@
                 </li>
                 <li class="divisão">|</li>
                 <li class="sobremim_header">
-                    <a href="sobremim.html">Sobre mim</a>
+                    <a href="#sobremim">Sobre mim</a>
                 </li>
                 <li class="divisão">|</li>
                 <li>
                     <a href="cadastrar.html">Cadastrar</a>
                 </li>
-                <li class="divisão">|</li>
-                <li>
-                    <a href="login.html">Login</a>
-                </li>
             </ul>
         </div>
     </div>
 
-    <div class="banner">
+    <div id="home" class="banner">
         <div class="container">
             <h2 class="titulo">TurBlog&copy;</h2>
             <p class="desc">Uma rede social pra você que é apaixonado por carros!</p>
+            <video autoplay loop muted plays-inline class="bg_video">
+                <source src="../css/202410242013.mp4" type="video/mp4">
+            </video>
+            <span class="scroll">Desça para saber mais!</span>
+            <i class="fa-solid fa-arrow-down" id="arrow" style="color: #ffffff;"></i>
         </div>
     </div>
 
@@ -52,7 +54,7 @@
         </div>
     </div>
 
-    <div class="sobremim">
+    <div id="sobremim" class="sobremim">
         <div class="container">
             <div class="container_left">
                 <h2 class="titulo">Sobre mim:</h2>
@@ -62,7 +64,7 @@
                 </div>
             </div>
             <div class="container_right">
-                <img class="img" src="./binho.jpeg" alt="minha foto">
+                <img class="img" src="../css/binho.jpeg" alt="minha foto">
             </div>
         </div>
     </div>

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+html{
+    display: flex;
+    scroll-behavior: smooth;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -10,21 +15,21 @@ body{
 
 :root{
     --tamanho-header: 80px;
-    --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-banner: calc(110vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-    --tamanho-main: calc(80vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-main: calc(90vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-sobremim: calc(90vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-    --tamanho-footer: 90px;
+    --tamanho-footer: 110px;
 }
 
 .header{
     height: var(--tamanho-header);
-    border-bottom: 3px solid #7b339c;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .container{
     display: flex;
-    width: 80%;
+    width: 85%;
     margin: auto;
 }
 
@@ -38,18 +43,18 @@ body{
 .header h1 {
     text-decoration: none;
     color: #ffffff;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .header a {
     text-decoration: none;
     color: #ffffff;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .header .divisão {
     text-decoration: none;
-    color: #7b339c;
+    color: #0e82af;
 }
 
 .inicio {
@@ -62,6 +67,21 @@ body{
     align-items: center;
     justify-content: space-around;
     list-style: none;
+}
+
+.scroll {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 40%;
+
+}
+
+#arrow{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 43%;
 }
 
 .desc {
@@ -79,8 +99,8 @@ body{
 
 .banner {
     height: var(--tamanho-banner);
-    color: white;
-    background-image: url('./headlight.jpg');
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.4);
     background-size: cover;
 }
 
@@ -95,7 +115,7 @@ body{
     width: 80%;
     margin: 0;
     padding: 0;
-    font-size: 15px;
+    font-size: 17px;
     margin-top: 0.5%;
 }
 
@@ -103,12 +123,20 @@ body{
     width: 80%;
     margin: 0;
     padding: 0;
-    font-size: 25px;
+    font-size: 30px;
+}
 
+.bg_video{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 .main {
-    background-color: #ffffff;
+    background: rgb(7,14,29);
+    background: linear-gradient(128deg, rgba(7,14,29,1) 0%, rgba(29,36,99,1) 49%, rgba(46,59,157,1) 100%);
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,7 +155,7 @@ body{
     height: 6vh;
     width: 7vw;
     border-radius: 30px;
-    background-color: #7b339c;
+    background-color: #004c8a;
     color: #ffffff;
     border: none;
     font-size: 100%;
@@ -139,19 +167,19 @@ body{
     height: 6vh;
     width: 7vw;
     border-radius: 30px;
-    background-color: #9556b1;
-    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);    
+    background-color: #36a5d1;
+    box-shadow: 0 5px 15px rgba(54, 165, 209, .4); 
     color: #ffffff;
     border: none;
 }
 
 .main .container h2{
-    color: black;
+    color: rgb(255, 255, 255);
     margin-bottom: 0%;
 }
 
 .main .container p{
-    color: black;
+    color: rgb(255, 255, 255);
     margin-bottom: 3%;
     margin-top: 0%;
 }
@@ -176,7 +204,7 @@ body{
     height: 6vh;
     width: 7vw;
     border-radius: 30px;
-    background-color: #7b339c;
+    background-color: #004c8a;
     color: #ffffff;
     border: none;
     font-size: 100%;
@@ -188,8 +216,8 @@ body{
     height: 6vh;
     width: 7vw;
     border-radius: 30px;
-    background-color: #9556b1;
-    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);    
+    background-color: rgb(54, 165, 209);
+    box-shadow: 0 5px 15px rgba(54, 165, 209, .4);    
     color: #ffffff;
     border: none;
 }
@@ -213,7 +241,8 @@ body{
 }
 
 .footer {
-    background-color: #7b339c;
+    background: rgb(7,14,29);
+    background: linear-gradient(128deg, rgba(7,14,29,1) 0%, rgba(29,36,99,1) 49%, rgba(46,59,157,1) 100%);
     height: var(--tamanho-footer);
     color: #fff;
     font-size: 15px;
