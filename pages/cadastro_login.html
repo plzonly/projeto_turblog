@@ -3,11 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <title>Cadastrar</title>
 </head>
 <body>
+
+    <div class="container" id="container">
+        <div class="form-container cadastro">
+            <form>
+                <h1>Crie sua conta!</h1>
+                <div class="icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>Ou use seu email para registrar:</span>
+                <input type="text" id="ipt_nome" placeholder="Nome">
+                <input type="email" id="ipt_email" placeholder="Email">
+                <input type="password" id="ipt_senha" placeholder="Senha">
+                <button onclick="cadastro()">Cadastrar!</button>
+            </form>
+        </div>
+        <div class="form-container login">
+            <form>
+                <h1>Acesse sua conta!</h1>
+                <div class="icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>Ou use seu email e senha:</span>
+                <input type="email" id="ipt_email" placeholder="Email">
+                <input type="password" id="ipt_senha" placeholder="Senha">
+                <a href="#">Esqueceu sua senha?</a>
+                <button onclick="acessar()">Acessar!</button>
+            </form>
+        </div>
+        <div class="trocar-container">
+            <div class="trocar">
+                <div class="trocar-painel trocar-esquerda">
+                    <h1>Bem-vindo de volta!</h1>
+                    <p>Insira seus dados pessoais para usar todas as ferramentas da TurBlog&copy;</p>
+                    <button class="esconde" id="login">Acessar!</button>
+                </div>
+                <div class="trocar-painel trocar-direita">
+                    <h1>Olá, Amigo(a)!</h1>
+                    <p>Cadastre-se com seus dados pessoais para usar todas as ferramentas da TurBlog&copy;</p>
+                    <button class="esconde" id="cadastrar">Cadastrar!</button>
+                </div>  
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
+
+<script src="../scripts/script_cadastro.js"></script>
