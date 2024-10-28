@@ -17,9 +17,9 @@ loginBtn.addEventListener('click', () =>{
 // var verificacoes = 0;
 
 function cadastro(){
-var nome = document.getElementById('ipt_nome').value;
-var senha = document.getElementById('ipt_senha').value;
-var email = document.getElementById('ipt_email').value;
+var nome = document.getElementById('ipt_nome_cadastro').value;
+var senha = document.getElementById('ipt_senha_cadastro').value;
+var email = document.getElementById('ipt_email_cadastro').value;
 var mensagemErro = '';
 var verificacoes = 0; 
 
@@ -58,7 +58,7 @@ var verificacoes = 0;
         senha.length >= 8
       ) {
         verificacoes++;
-      } else {
+      } else if (senha.length < 8){
         mensagemErro += "Senha inválida.\n";
       }
       //
@@ -76,14 +76,15 @@ var verificacoes = 0;
       //Validação final
       if (verificacoes == 3) {
         alert("Usuário Cadastrado!");
+        window.location.reload();
       } else {
         alert(mensagemErro);
       }
 }
 
 function acessar(){
- var senha = document.getElementById('ipt_senha').value;
- var email = document.getElementById('ipt_email').value;
+ var senha = document.getElementById('ipt_senha_login').value;
+ var email = document.getElementById('ipt_email_login').value;
  var mensagemErro = '';
  var verificacoes = 0; 
 
@@ -134,8 +135,9 @@ function acessar(){
       }
 
       if (senha == "Turblog#123" && email == "turblog@gmail.com"){
+        alert('Usuário acessado com sucesso!');
         window.location.href= "./index.html";
       } else {
-        alert('Usuário não exite!')
+        alert('Usuário não exite!');
       }
 }
