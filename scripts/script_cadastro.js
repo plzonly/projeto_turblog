@@ -10,13 +10,19 @@ loginBtn.addEventListener('click', () =>{
     container.classList.remove("active");
 });
 
-var nome = ipt_nome.value;
-var senha = ipt_senha.value;
-var email = ipt_email.value;
+// var nome = '';
+// var senha = '';
+// var email = '';
+// var mensagemErro = '';
+// var verificacoes = 0;
+
+function cadastro(){
+var nome = document.getElementById('ipt_nome').value;
+var senha = document.getElementById('ipt_senha').value;
+var email = document.getElementById('ipt_email').value;
 var mensagemErro = '';
 var verificacoes = 0; 
 
-function cadastro(){
     //Validação de nome
     if(nome != ""){
         verificacoes++;
@@ -31,7 +37,11 @@ function cadastro(){
         if (!isNaN(senha[i])) {
           contem_numero = true;
           i = senha.length;
-        }
+        } 
+      }
+
+      if(contem_numero == false){
+        mensagemErro += "A senha necessita de um número!\n";
       }
     
     if (
@@ -72,9 +82,14 @@ function cadastro(){
 }
 
 function acessar(){
+ var senha = document.getElementById('ipt_senha').value;
+ var email = document.getElementById('ipt_email').value;
+ var mensagemErro = '';
+ var verificacoes = 0; 
+
     //Validação de senha
     var contem_numero = false;
-
+    console.log(senha);
     for (i = 0; i < senha.length; i++) {
         if (!isNaN(senha[i])) {
           contem_numero = true;
