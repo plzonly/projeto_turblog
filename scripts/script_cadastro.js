@@ -133,11 +133,4 @@ function acessar(){
       } else {
         alert(mensagemErro);
       }
-
-      if (senha == "Turblog#123" && email == "turblog@gmail.com"){
-        alert('Usuário acessado com sucesso!');
-        window.location.href= "./index.html";
-      } else {
-        alert('Usuário não exite!');
-      }
 }
