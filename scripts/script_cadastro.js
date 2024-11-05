@@ -62,6 +62,7 @@ var verificacoes = 0;
         mensagemErro += "Senha inválida.\n";
       }
       //
+      
       //Validação de email
     if (
         email.includes("@") &&
@@ -116,6 +117,7 @@ function acessar(){
         mensagemErro += "Senha inválida.\n";
       }
       //
+
       //Validação de email
     if (
         email.includes("@") &&
