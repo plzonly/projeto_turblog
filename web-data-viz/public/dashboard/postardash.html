@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/style_dash.css">
-    <title>TurBlog&copy;</title>
+    <title>TurBlog&copy; | Publicar</title>
 </head>
 <body>
     <body onload="atualizarFeed()">
@@ -15,7 +15,7 @@
           </div>
           <ul class="nav-links">
             <li>
-              <a href="#">
+              <a href="../dashboard/site.html">
                 <i class='bx bx-grid-alt' ></i>
                 <span class="link_name">Notícias</span>
               </a>
@@ -52,9 +52,32 @@
         <section class="home">
           <div class="home-content">
             <i class='bx bx-menu' ></i>
-            <span class="text">Notícias da Comunidade</span>
-          </div>
-          <div id="feed_container"></div>
-        </section>
+            <span class="text">Publique sua notícia!</span>
+    </div>
+
+    <div class="div-form">
+        <form id="form_postagem" method="post" onsubmit="return publicar()">
+            <label>
+                Título:
+                <br>
+                <input name="titulo" id="titulo" maxlength="100" type="text">
+            </label>
+            <br>
+            <label>
+                Descrição (máximo de 250 caracteres):
+                <br>
+                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+            </label>
+            <br>
+            <label for="fileInput" class="custom-file-upload">
+              <img src="https://static.thenounproject.com/png/187803-200.png" alt="Escolher Ficheiro">
+            </label>
+            <input type="file" name="imagem "id="imagem">
+            <br>
+            <button type="submit">Postar</button>
+        </form>
+    </div>
+
+  </section>
 </body>
 </html>
