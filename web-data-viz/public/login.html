@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/style_cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>TurBlog&copy; | Login</title>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container login">
+            <form>
+                <h1>Acesse sua conta!</h1>
+                <div class="icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>Ou use seu email e senha:</span>
+                <input type="email" id="ipt_email_login" placeholder="Email">
+                <input type="password" id="ipt_senha_login" placeholder="Senha">
+                <a href="#">Esqueceu sua senha?</a>
+                <button onclick="acessar()" type="button">Acessar!</button>
+            </form>
+        </div>
+        <div class="container-direita">
+            <div class="painel-direita">
+                <div class="msg-cadastro">
+                    <h1>Olá, Amigo(a)!</h1>
+                    <p>Cadastre-se com seus dados pessoais para usar todas as ferramentas da TurBlog&copy;</p>
+                    <a href="../public/cadastro.html"><button class="esconde" id="cadastrar" >Cadastrar!</button></a>
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script src="../scripts/script_cadastro.js"></script>
