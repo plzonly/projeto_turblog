@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/style_dash.css">
-    <title>TurBlog&copy; | Componentes</title>
+    <title>TurBlog&copy; | Início</title>
 </head>
 <body>
     <body onload="atualizarFeed()">
@@ -13,31 +13,44 @@
           <div class="logo">
             <p>TurBlog&copy;</p>
           </div>
+          <div class="user">
+            <h3>Olá, <span id="user">usuário</span>!</h3>
+        </div>
           <ul class="nav-links">
             <li>
-              <a href="#">
+              <a href="./site.html">
                 <i class='bx bx-grid-alt' ></i>
-                <span class="link_name">Componentes</span>
+                <span class="link_name">Início</span>
               </a>      
             <li>
               <div class="iocn-link">
-                <a href="../dashboard/postardash.html">
+                <a href="./status.html">
                   <i class='bx bx-book-alt' ></i>
-                  <span class="link_name">Status</span>
+                  <span class="link_name">Postar</span>
                 </a>
               </div>     
             <li>
-              <a href="../dashboard/estatisticasdash.html">
-                <i class='bx bx-line-chart' ></i>
+              <a href="./suporte.html">
+                <i class='bx bx-support' ></i>
                 <span class="link_name">Suporte</span>
               </a>
             </li>
+            <li>
+              <a href="./suporte.html">
+                  <i class='bx bx-line-chart'></i>
+                  <span class="link_name">Estatísticas</span>
+              </a>
+          </li>
             <li>
           <div class="profiledetalhes">
             <i class='bx bx-log-out' onclick="limparSessao()"></i>  
           </div>
         </li>
       </ul>
-        </div>
+    </div>
+    <div class="main">
+      <i class='bx bx-grid-alt' id="icon_inicio" ></i>
+      <span class="link_name">Início</span>
+    </div>
 </body>
 </html>

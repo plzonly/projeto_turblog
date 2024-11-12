@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>TurBlog&copy; | Status</title>
+    <title>TurBlog&copy; | Postar</title>
     <link rel="stylesheet" href="../css/style_dash.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,31 +14,47 @@
     <div class="logo">
         <p>TurBlog&copy;</p>
       </div>
+      <div class="user">
+        <h3>Olá, <span id="user">usuário</span>!</h3>
+    </div>
     <ul class="nav-links">
         <li>
-            <a href="../dashboard/site.html">
+            <a href="./site.html">
                 <i class='bx bx-grid-alt'></i>
-                <span class="link_name">Componentes</span>
+                <span class="link_name">Início</span>
             </a>
         </li>
         <li>
             <div class="iocn-link">
-                <a href="../dashboard/postardash.html">
+                <a href="./status.html">
                     <i class='bx bx-book-alt'></i>
-                    <span class="link_name">Status</span>
+                    <span class="link_name">Postar</span>
                 </a>
             </div>
         </li>
         <li>
-            <a href="../dashboard/estatisticasdash.html">
-                <i class='bx bx-line-chart'></i>
+            <a href="./suporte.html">
+                <i class='bx bx-support'></i>
                 <span class="link_name">Suporte</span>
+            </a>
+        </li>
+        <li>
+            <a href="./estatisticas.html">
+                <i class='bx bx-line-chart'></i>
+                <span class="link_name">Estatísticas</span>
             </a>
         </li>
         <li>
             <div class="profiledetalhes">
                 <i class='bx bx-log-out' onclick="limparSessao()"></i>
             </div>
+        </li>
+    </ul>
+</div>
+<div class="main">
+    <i class='bx bx-book-alt' id="icon_inicio" ></i>
+    <span class="link_name">Postar</span>
+  </div>
 </body>
 </html>
         

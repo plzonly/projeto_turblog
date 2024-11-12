@@ -191,3 +191,10 @@ body{
     width: 30%;
     text-align: center;
 }
+
+.alerta_erro {
+    color: #ccc;
+    margin-top: 1%;
+    font-style: italic;
+    font-size: 2vh;
+}
