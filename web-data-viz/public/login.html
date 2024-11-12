@@ -31,7 +31,7 @@
                 <div class="msg-cadastro">
                     <h1>Olá, Amigo(a)!</h1>
                     <p>Cadastre-se com seus dados pessoais para usar todas as ferramentas da TurBlog&copy;</p>
-                    <a href="../public/cadastro.html"><button class="esconde" id="cadastrar" >Cadastrar!</button></a>
+                    <a href="./cadastro.html"><button class="esconde" id="cadastrar" >Cadastrar!</button></a>
                 </div>  
             </div>
         </div>
@@ -77,16 +77,23 @@ function acessar() {
             if (resposta.ok) {
                 console.log(resposta);
 
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML =
+                    "Usuário acessado com sucesso! Redirecionando para tela de início...";
+
+
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id
+                    sessionStorage.ID_USUARIO = json.idusuario
+
 
                     setTimeout(function () {
                         window.location = "./dashboard/site.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 2000); // apenas para exibir o loading
 
                 });
 

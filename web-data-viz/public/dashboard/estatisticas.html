@@ -19,7 +19,7 @@
             <p>TurBlog&copy;</p>
         </div>
         <div class="user">
-            <h3>Olá, <span id="user">usuário</span>!</h3>
+            <h3>Olá, <span id="user"></span>!</h3>
         </div>
         <ul class="nav-links">
             <li>
@@ -61,6 +61,8 @@
       </div>
 </body>
 </html>
+
+<script src="../js/sessao.js"></script>
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    user.innerHTML = sessionStorage.NOME_USUARIO;
 </script>
