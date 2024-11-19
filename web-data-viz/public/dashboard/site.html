@@ -48,14 +48,109 @@
         </li>
       </ul>
     </div>
-    <div class="main">
-      <i class='bx bx-grid-alt' id="icon_inicio" ></i>
-      <span class="link_name">Início</span>
-    </div>
+
+    <section class="home">
+      <div class="home-content">
+        <i class='bx bx-menu' ></i>
+        <span class="text">Início</span>
+      </div>
+      <div id="feed_container"></div>
+    </section>
+
 </body>
 </html>
 
 <script src="../js/sessao.js"></script>
 <script>
   user.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
+
+<script>    
+  sessionStorage.idAviso
+
+
+function limparFormulario() {
+      document.getElementById("form_postagem").reset();
+  }
+
+  function atualizarFeed() {
+      fetch("/avisos/listar").then(function (resposta) {
+        
+
+          if (resposta.ok) {
+              if (resposta.status == 204) {
+                  var feed = document.getElementById("feed_container");
+                  var mensagem = document.createElement("span");
+                  mensagem.innerHTML = "Nenhum resultado encontrado."
+                  feed.appendChild(mensagem);
+                  throw "Nenhum resultado encontrado!!";
+              }
+
+              resposta.json().then(function (resposta) {
+                  console.log("Dados recebidos: ", JSON.stringify(resposta));
+                  console.log("Imagem é: " + resposta[0].imagem)
+
+                  var feed = document.getElementById("feed_container");
+                  feed.innerHTML = "";
+                  for (let i = 0; i < resposta.length; i++) {
+                      var publicacao = resposta[i];
+
+                      // criando e manipulando elementos do HTML via JavaScript
+                      var divPublicacao = document.createElement("div");
+                      var spanID = document.createElement("span");
+                      var divImagem = document.createElement("div");
+                      var spanTitulo = document.createElement("span");
+                      var spanNome = document.createElement("span");
+                      var divDescricao = document.createElement("div");
+                      var divButtons = document.createElement("div");
+                      var btnEditar = document.createElement("button");
+                      var btnDeletar = document.createElement("button");
+
+                      const imageUrl = publicacao.imagem;
+                      console.log('Imagem URL após substituição:', imageUrl);
+                      console.log(publicacao.imagem);
+                      
+                      divImagem.innerHTML = `<img src="${imageUrl}">`;
+                      spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                      spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                      divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+
+                      divPublicacao.className = "publicacao";
+                      spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                      divImagem.classname = "publicacao-imagem";
+                      spanNome.className = "publicacao-nome";
+                      spanTitulo.className = "publicacao-titulo";
+                      divDescricao.className = "publicacao-descricao";
+
+                      //divButtons.className = "div-buttons"
+
+                      // btnEditar.className = "publicacao-btn-editar"
+                      // btnEditar.id = "btnEditar" + publicacao.idAviso;
+                      // btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                      // btnDeletar.className = "publicacao-btn-editar"
+                      // btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                      // btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                      divPublicacao.appendChild(spanID);
+                      divPublicacao.appendChild(divImagem);
+                      divPublicacao.appendChild(spanNome);
+                      divPublicacao.appendChild(spanTitulo);
+                      divPublicacao.appendChild(divDescricao);
+                     // divPublicacao.appendChild(divButtons);
+                     // divButtons.appendChild(btnEditar);
+                     // divButtons.appendChild(btnDeletar);
+                      feed.appendChild(divPublicacao);
+                  }
+
+                  finalizarAguardar();
+              });
+          } else {
+              throw ('Houve um erro na API!');
+          }
+      }).catch(function (resposta) {
+          console.error(resposta);
+          finalizarAguardar();
+      });
+  }
 </script>

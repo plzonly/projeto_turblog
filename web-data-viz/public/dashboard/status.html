@@ -51,10 +51,37 @@
         </li>
     </ul>
 </div>
-<div class="main">
-    <i class='bx bx-book-alt' id="icon_inicio" ></i>
-    <span class="link_name">Postar</span>
-  </div>
+<section class="home">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Postar</span>
+    </div>
+
+    <div class="div-form">
+        <form id="form_postagem" method="post" onsubmit="return publicar()">
+            <label>
+                Título:
+                <br>
+                <input name="titulo" id="titulo" maxlength="100" type="text">
+            </label>
+            <br>
+            <label>
+                Descrição (máximo de 250 caracteres):
+                <br>
+                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+            </label>
+            <br>
+            <label for="fileInput" class="custom-file-upload">
+              <img src="https://static.thenounproject.com/png/187803-200.png" alt="Escolher Ficheiro">
+            </label>
+            <input type="file" name="imagem "id="imagem">
+            <br>
+            <button type="submit">Postar</button>
+        </form>
+    </div>
+
+  </section>
+
 </body>
 </html>
 
@@ -62,4 +89,64 @@
 <script>
     user.innerHTML = sessionStorage.NOME_USUARIO;
 </script>
+
+<script>
+    document.querySelector('.upload').addEventListener('click', function() {
+        document.querySelector('#imagem').click();
+    });
+</script> 
+
+  <script>
+        function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function publicar() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        console.log("ID do Usuário: ", idusuario);
+
+        const formData = new FormData();
+        formData.append('imagem', imagem.files[0])  
+
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            descricao: form_postagem.descricao.value,
+            imagem: form_postagem.imagem.value
+        }
+
+        fetch(`/avisos/publicar/${idusuario}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idusuario + "!");
+                window.location = "publicarnoticia.html";
+                resposta.json().then(json => {
+           
+                    console.log(resposta);
+
+                });
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+  </script>
         

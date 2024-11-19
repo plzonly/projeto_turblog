@@ -39,31 +39,45 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function pesquisarDescricao(req, res) {
-    var descricao = req.params.descricao;
+function postar(req, res) {
+    var titulo = req.body.titulopost;
+    var descricao = req.body.descricaopost;
+    var imagem = req.body.imagem;
+    console.log("Como veio: "+ imagem)
+    var idUsuario = req.params.idusuario;
 
-    avisoModel.pesquisarDescricao(descricao)
-        .then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
+    if (titulo == undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else if (imagem == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    }else {
+        imagem = imagem.replaceAll("\\", "/");
+        imagem = imagem.replace("C:/fakepath/", "imagenspost/")
+        console.log("Como será salvo: "+ imagem)
+        avisoModel.publicar(titulo, descricao, imagem, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
                 }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 function publicar(req, res) {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+    var idUsuario = req.params.idusuario;
 
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
@@ -129,8 +143,5 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarPorUsuario,
-    pesquisarDescricao,
-    publicar,
-    editar,
-    deletar
+    publicar
 }
