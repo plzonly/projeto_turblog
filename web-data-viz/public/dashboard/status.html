@@ -58,7 +58,7 @@
     </div>
 
     <div class="div-form">
-        <form id="form_postagem" onsubmit="postar(event)">
+        <form id="form_postagem" method="post" onsubmit="return postar()">
             <label>
                 Título:
                 <br>
@@ -101,9 +101,8 @@
         document.getElementById("form_postagem").reset();
     }
 
-    function postar(event) {
-        event.preventDefault();
-        
+    function postar() {
+
         var idUsuario = sessionStorage.ID_USUARIO;
 
         console.log("ID do Usuário: ", idUsuario);
@@ -129,7 +128,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location.reload();   
+                window.location = "/status.html";   
                 resposta.json().then(json => {
            
                     console.log(resposta);
