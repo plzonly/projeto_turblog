@@ -1,38 +1,3 @@
-// var database = require("../database/config");
-
-// function buscarUltimasMedidas(idAquario, limite_linhas) {
-
-//     var instrucaoSql = `SELECT 
-//         dht11_temperatura as temperatura, 
-//         dht11_umidade as umidade,
-//                         momento,
-//                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-//                     FROM medida
-//                     WHERE fk_aquario = ${idAquario}
-//                     ORDER BY id DESC LIMIT ${limite_linhas}`;
-
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
-
-// function buscarMedidasEmTempoReal(idAquario) {
-
-//     var instrucaoSql = `SELECT 
-//         dht11_temperatura as temperatura, 
-//         dht11_umidade as umidade,
-//                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-//                         fk_aquario 
-//                         FROM medida WHERE fk_aquario = ${idAquario} 
-//                     ORDER BY id DESC LIMIT 1`;
-
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
-
-// module.exports = {
-//     buscarUltimasMedidas,
-//     buscarMedidasEmTempoReal
-// }
 var database = require("../database/config");
 
 function buscarUltimasMedidas(limite_linhas) {
@@ -76,9 +41,9 @@ function buscarMedidasEmTempoReal() {
 }
 
 function buscarUltimasNoticias(limite_linhas) {
-    var instrucaoSql = `SELECT usuario.nome, COUNT(noticias.id) AS quantidade_posts 
+    var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.id) AS quantidade_posts 
     FROM usuario
-    JOIN noticias ON usuario.id = noticias.fk_usuario
+    JOIN postagem ON usuario.idusuario = postagem.fkUsuario
     GROUP BY usuario.nome
     ORDER BY quantidade_posts DESC
     LIMIT ${limite_linhas};`;
@@ -87,9 +52,9 @@ function buscarUltimasNoticias(limite_linhas) {
 }
 
 function buscarNoticiasEmTempoReal() {
-    var instrucaoSql = `SELECT usuario.nome, COUNT(noticias.id) AS quantidade_posts 
+    var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.id) AS quantidade_posts 
     FROM usuario
-    JOIN noticias ON usuario.id = noticias.fk_usuario
+    JOIN postagem ON usuario.idusuarios = postagem.fkUsuario
     GROUP BY usuario.nome
     ORDER BY quantidade_posts DESC
     LIMIT 3;`;

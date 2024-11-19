@@ -58,7 +58,7 @@ function postar(req, res) {
         imagem = imagem.replaceAll("\\", "/");
         imagem = imagem.replace("C:/fakepath/", "imagenspost/")
         console.log("Como será salvo: "+ imagem)
-        avisoModel.publicar(titulo, descricao, imagem, idUsuario)
+        avisoModel.postar(titulo, descricao, imagem, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -143,5 +143,8 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarPorUsuario,
-    publicar
+    postar,
+    publicar,
+    editar,
+    deletar
 }

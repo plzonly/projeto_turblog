@@ -58,7 +58,7 @@
     </div>
 
     <div class="div-form">
-        <form id="form_postagem" method="post" onsubmit="return publicar()">
+        <form id="form_postagem" onsubmit="postar(event)">
             <label>
                 Título:
                 <br>
@@ -71,7 +71,7 @@
                 <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
             </label>
             <br>
-            <label for="fileInput" class="custom-file-upload">
+            <label for="fileInput" class="upload">
               <img src="https://static.thenounproject.com/png/187803-200.png" alt="Escolher Ficheiro">
             </label>
             <input type="file" name="imagem "id="imagem">
@@ -101,22 +101,23 @@
         document.getElementById("form_postagem").reset();
     }
 
-    function publicar() {
-
+    function postar(event) {
+        event.preventDefault();
+        
         var idUsuario = sessionStorage.ID_USUARIO;
 
-        console.log("ID do Usuário: ", idusuario);
+        console.log("ID do Usuário: ", idUsuario);
 
         const formData = new FormData();
         formData.append('imagem', imagem.files[0])  
 
         var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value,
+            titulo: form_postagem.titulopost.value,
+            descricao: form_postagem.descricaopost.value,
             imagem: form_postagem.imagem.value
         }
 
-        fetch(`/avisos/publicar/${idusuario}`, {
+        fetch(`/avisos/postar/${idUsuario}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -127,8 +128,8 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idusuario + "!");
-                window.location = "publicarnoticia.html";
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location.reload();   
                 resposta.json().then(json => {
            
                     console.log(resposta);
