@@ -58,7 +58,7 @@
     </div>
 
     <div class="div-form">
-        <form id="form_postagem" method="post" onsubmit="return postar()">
+        <form id="form_postagem" method="post" onsubmit="return publicar()">
             <label>
                 Título:
                 <br>
@@ -71,7 +71,7 @@
                 <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
             </label>
             <br>
-            <label for="fileInput" class="upload">
+            <label for="fileInput" class="custom-file-upload">
               <img src="https://static.thenounproject.com/png/187803-200.png" alt="Escolher Ficheiro">
             </label>
             <input type="file" name="imagem "id="imagem">
@@ -91,7 +91,7 @@
 </script>
 
 <script>
-    document.querySelector('.upload').addEventListener('click', function() {
+    document.querySelector('.custom-file-upload').addEventListener('click', function() {
         document.querySelector('#imagem').click();
     });
 </script> 
@@ -101,7 +101,7 @@
         document.getElementById("form_postagem").reset();
     }
 
-    function postar() {
+    function publicar() {
 
         var idUsuario = sessionStorage.ID_USUARIO;
 
@@ -116,7 +116,7 @@
             imagem: form_postagem.imagem.value
         }
 
-        fetch(`/avisos/postar/${idUsuario}`, {
+        fetch(`/avisos/publicar/${idUsuario}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -128,7 +128,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/status.html";   
+                window.location = "status.html";   
                 resposta.json().then(json => {
            
                     console.log(resposta);
@@ -147,6 +147,8 @@
         });
 
         return false;
+
+        
     }
   </script>
         

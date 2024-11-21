@@ -39,7 +39,7 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function postar(req, res) {
+function publicar(req, res) {
     var titulo = req.body.titulopost;
     var descricao = req.body.descricaopost;
     var imagem = req.body.imagem;
@@ -58,7 +58,7 @@ function postar(req, res) {
         imagem = imagem.replaceAll("\\", "/");
         imagem = imagem.replace("C:/fakepath/", "imagenspost/")
         console.log("Como será salvo: "+ imagem)
-        avisoModel.postar(titulo, descricao, imagem, idUsuario)
+        avisoModel.publicar(titulo, descricao, imagem, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -74,7 +74,7 @@ function postar(req, res) {
     }
 }
 
-function publicar(req, res) {
+function suporte(req, res) {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
     var idUsuario = req.params.idusuario;
@@ -143,7 +143,7 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarPorUsuario,
-    postar,
+    publicar,
     publicar,
     editar,
     deletar

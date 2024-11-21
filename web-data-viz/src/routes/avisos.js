@@ -60,7 +60,7 @@ router.post('/publicar', upload.single('imagem'), (req, res) => {
   avisoController.publicar(req, res);
 });
 
-router.get('/:id', upload.single('imagem'), (req, res) => {
+router.get('/:idusuario', upload.single('imagem'), (req, res) => {
   avisoController.publicar(req, res);
 });
 });
