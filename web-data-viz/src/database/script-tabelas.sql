@@ -9,15 +9,6 @@ CREATE TABLE usuario (
     dtCad timestamp default current_timestamp
 ) auto_increment = 1;
 
-CREATE TABLE aviso (
-    idaviso INT PRIMARY KEY auto_increment,
-    titulo VARCHAR(45),
-    descricao VARCHAR(250),
-    dtAviso DATE,
-    fkUsuario INT,
-    CONSTRAINT fkAvisoUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario)
-) auto_increment = 10;
-
 CREATE TABLE postagem (
     idpostagem INT PRIMARY KEY auto_increment,
     titulopost VARCHAR(45),

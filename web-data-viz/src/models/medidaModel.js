@@ -41,7 +41,7 @@ function buscarMedidasEmTempoReal() {
 }
 
 function buscarUltimasNoticias(limite_linhas) {
-    var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.id) AS quantidade_posts 
+    var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.idpostagem) AS quantidade_posts 
     FROM usuario
     JOIN postagem ON usuario.idusuario = postagem.fkUsuario
     GROUP BY usuario.nome
@@ -52,7 +52,7 @@ function buscarUltimasNoticias(limite_linhas) {
 }
 
 function buscarNoticiasEmTempoReal() {
-    var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.id) AS quantidade_posts 
+    var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.idpostagem) AS quantidade_posts 
     FROM usuario
     JOIN postagem ON usuario.idusuarios = postagem.fkUsuario
     GROUP BY usuario.nome
