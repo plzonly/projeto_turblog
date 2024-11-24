@@ -52,7 +52,7 @@
     </div>
 
     <div class="div-form">
-        <form id="form_postagem" method="post" onsubmit="return publicar()">
+        <div id="form_postagem">
             <label>
                 Título:
                 <br>
@@ -65,13 +65,14 @@
                 <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
             </label>
             <br>
-            <label for="fileInput" class="custom-file-upload">
-              <img src="https://static.thenounproject.com/png/187803-200.png" alt="Escolher Ficheiro">
+            <label>
+                Link da imagem:
+                <br>
+                <input  id="linkImagem" maxlength="100" type="text">
             </label>
-            <input type="file" name="imagem "id="imagem">
             <br>
-            <button type="submit">Postar</button>
-        </form>
+            <button  onclick="publicar()">Postar</button>
+        </div>
     </div>
 
   </section>

@@ -105,9 +105,9 @@ function limparFormulario() {
                       console.log(publicacao.imagem);
                       
                       divImagem.innerHTML = `<img src="${imageUrl}">`;
-                      spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                      spanTitulo.innerHTML = "Título: <b>" + publicacao.titulopost + "</b>";
                       spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                      divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                      divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricaopost + "</b>";
 
                       divPublicacao.className = "publicacao";
                       spanTitulo.id = "inputNumero" + publicacao.idAviso;

@@ -43,8 +43,8 @@ function publicar(req, res) {
     var titulo = req.body.titulopost;
     var descricao = req.body.descricaopost;
     var imagem = req.body.imagem;
-    console.log("Como veio: "+ imagem)
-    var idUsuario = req.params.idusuario;
+    var idUsuario = req.params.idUsuario;
+    console.log("Como veio: "+ titulo, descricao, imagem, idUsuario)
 
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
@@ -55,8 +55,6 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     }else {
-        imagem = imagem.replaceAll("\\", "/");
-        imagem = imagem.replace("C:/fakepath/", "imagenspost/")
         console.log("Como será salvo: "+ imagem)
         avisoModel.publicar(titulo, descricao, imagem, idUsuario)
             .then(
