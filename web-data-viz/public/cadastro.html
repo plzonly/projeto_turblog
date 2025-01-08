@@ -14,16 +14,31 @@
         <div class="form-container cadastro">
             <form>
                 <h1>Crie sua conta!</h1>
-                <div class="icons">
+                <!-- <div class="icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>    Retirando os icons para cadastro.
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>Ou use seu email para registrar:</span>
+                </div> -->
+                <span>Preencha todos os campos para registrar:</span>
                 <input type="text" id="nome_input" placeholder="Nome">
                 <input type="email" id="email_input" placeholder="Email">
                 <input type="password" id="senha_input" placeholder="Senha">
+                <select id="favorito_input">
+                  <option value="#" selected disabled>Selecione sua marca favorita:</option>
+                  <option value="Lamborghini">Lamborghini</option>
+                  <option value="Ferrari">Ferrari</option>
+                  <option value="Porsche">Porsche</option>
+                  <option value="Audi">Audi</option>      <!-- Criando o formulario para o usuario escolher sua marca favorita-->
+                  <option value="Pagani">Pagani</option>
+                  <option value="BMW">BMW</option>
+                  <option value="Lexus">Lexus</option>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Nissan">Nissan</option>
+                  <option value="Mitsubishi">Mitsubishi</option>
+                  <option value="BYD">BYD</option>
+                  <option value="Outros">Outros...</option>
+                </select>
                 <button onclick="cadastrar()" type="button">Cadastrar!</button>
             </form>
         </div>
@@ -50,18 +65,20 @@
 <script>
 function cadastrar() {
 
+  //Criando variavel 'carrofavVar'
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
+    var carrofavVar = favorito_input.value; 
 
     if (
       nomeVar == "" ||
       emailVar == "" ||
-      senhaVar == ""
+      senhaVar == "" ||
+      carrofavVar == ""
     ) {
       alert('Preencha todos os campos para cadastrar!');
-    } else {
-    //   setInterval(sumirMensagem, 5000);
+      return;
     }
 
     // Enviando o valor da nova input
@@ -73,9 +90,11 @@ function cadastrar() {
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        // Criando atributo 'CarroServer'
         nomeServer: nomeVar,
         emailServer: emailVar,
-        senhaServer: senhaVar
+        senhaServer: senhaVar,
+        carroServer: carrofavVar
       }),
     })
       .then(function (resposta) {
