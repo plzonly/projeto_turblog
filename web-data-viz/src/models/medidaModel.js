@@ -54,7 +54,7 @@ function buscarUltimasNoticias(limite_linhas) {
 function buscarNoticiasEmTempoReal() {
     var instrucaoSql = `SELECT usuario.nome, COUNT(postagem.idpostagem) AS quantidade_posts 
     FROM usuario
-    JOIN postagem ON usuario.idusuarios = postagem.fkUsuario
+    JOIN postagem ON usuario.idusuario = postagem.fkUsuario
     GROUP BY usuario.nome
     ORDER BY quantidade_posts DESC
     LIMIT 3;`;

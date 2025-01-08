@@ -16,7 +16,7 @@ function publicar() {
 
     const idUsuario = sessionStorage.getItem('ID_USUARIO');
 
-    fetch(`http://localhost:3333/avisos/publicar/${idUsuario}`, {
+    fetch(`/avisos/publicar/${idUsuario}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"

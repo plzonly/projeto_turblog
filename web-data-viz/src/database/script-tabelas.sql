@@ -13,7 +13,7 @@ CREATE TABLE postagem (
     idpostagem INT PRIMARY KEY auto_increment,
     titulopost VARCHAR(45),
     descricaopost VARCHAR(250),
-    imagem VARCHAR(300),
+    imagem TEXT,
     fkUsuario INT,
     CONSTRAINT fkPostagemUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario)
 ) auto_increment = 1000;

@@ -56,7 +56,7 @@
             <i class='bx bx-menu'></i>
             <span class="text">Acompanhe nossa comunidade!</span>
         </div>
-        <div id="graficos"></div>
+        <div class="KPI">Usuarios cadastrados:<span id="graficos"></span></div>
         <div id="graficos2"></div>
     </section>
 
@@ -75,20 +75,6 @@
     window.onload = exibirUsuarios;
     
     function exibirUsuarios() {
-        document.getElementById("graficos").innerHTML = `
-            <div id="grafico">
-                <h3 class="tituloGraficos">
-                    <span id="tituloGrafico"></span>
-                </h3>
-                <div class="graph">
-                    <canvas id="myChartCanvas"></canvas>
-                    <div class="label-captura">
-                    <p id="avisoCaptura" style="color: #37678f">Acompanhe Simultâneamente nosso Fórum crescendo!</p>
-                </div>
-                </div>
-                
-            </div>
-        `;
     
         document.getElementById("graficos2").innerHTML = `
             <div id="grafico2">
@@ -97,8 +83,8 @@
                 </div>
             </div>
             <div class="label-captura2">
-            <h1> Quer aparecer mais no Top?</h1>
-            <h4> Poste mais notícias e estára constantemente no topo! </h4>
+            <h1> Quer vencer esta corrida!?</h1>
+            <h4> Poste mais notícias e estára constantemente no pódio! </h4>
             </div>
         `;
     
@@ -145,17 +131,22 @@
     
         let labels = resposta.map(item => item.mes);
         let dados = resposta.map(item => item.quantidade_usuarios);
-    
+        
         let data = {
             labels: labels,
             datasets: [{
                 label: 'Total de Usuários por Mês',
                 data: dados,
-                backgroundColor: 'rgb(0, 0, 0)',
-                borderColor: 'rgb(0, 0, 0)',
+                backgroundColor: 'rgb(55, 103, 143)',
+                borderColor: 'rgb(55, 103, 143)',
                 borderWidth: 1
             }]
         };
+        
+        var grafico1 = document.getElementById('graficos');
+        console.log(grafico1);
+        
+        grafico1.innerHTML = `${dados[0]}`;
     
         const config = {
             type: 'bar',
@@ -198,8 +189,8 @@
                 datasets: [{
                     label: 'Top Postadores',
                     data: dados2,
-                    backgroundColor: ['rgba(0, 0, 0)', 'rgba(0, 0, 0)', 'rgba(0, 0, 0)'],
-                    borderColor: ['rgba(0, 0, 0)', 'rgba(0, 0, 0)', 'rgba(0, 0, 0)'],
+                    backgroundColor: ['rgb(55, 103, 143)', 'rgb(55, 103, 143)', 'rgb(55, 103, 143)'],
+                    borderColor: ['rgb(55, 103, 143)', 'rgb(55, 103, 143)', 'rgb(55, 103, 143)'],
                     borderWidth: 1
                 }]
             },

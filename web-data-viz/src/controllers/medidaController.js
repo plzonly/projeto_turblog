@@ -1,7 +1,8 @@
 const medidaModel = require("../models/medidaModel");
+const limite_linhas = 1;
 
 function buscarUltimasMedidas(req, res) {
-    const limite_linhas = 1;
+    
     console.log(`Recuperando as últimas ${limite_linhas} medidas`);
 
     medidaModel.buscarUltimasMedidas(limite_linhas)
