@@ -138,11 +138,51 @@ function deletar(req, res) {
         );
 }
 
+async function cadastrarCarro(req, res) {
+    try {
+        var carro = req.body.carroServer;
+        var idUsuario = req.body.idUsuario;
+        
+        console.log('entrou na function cadastrarCarro', carro, idUsuario, req.body)
+        
+        if (carro == '#') {
+            return res.status(400).send("Preencha o campo!");
+        }
+
+
+        let resultado = await avisoModel.cadastrarCarro(carro, idUsuario);
+        res.json(resultado);
+
+    } catch (erro) {
+        console.log("Erro ao cadastrar:", erro);
+        res.status(500).json({ erro: erro.sqlMessage || "Erro desconhecido" });
+    }
+}
+
+function contarCarros(req, res){
+    var idUsuario = req.params.idUsuario;
+
+    avisoModel.contarCarros(idUsuario).then(
+        function(resultado){
+            console.log(resultado)
+            res.json(resultado);
+        }
+    )
+
+    .catch (function(resultado){
+        console.log(resultado)
+        res.json(resultado);
+    })
+    
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
     publicar,
     publicar,
     editar,
-    deletar
+    deletar,
+    cadastrarCarro,
+    contarCarros
 }

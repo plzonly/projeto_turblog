@@ -92,11 +92,34 @@ function deletar(idAviso) {
     return database.executar(instrucaoSql);
 }
 
+function cadastrarCarro(carrofav, idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarCarro():", carrofav, idUsuario);
+
+    var inserindoCarroFavorito = `
+    INSERT INTO carro (nome, fkUsuario) VALUES ('${carrofav}', '${idUsuario}');   
+    `
+
+    //Adicionando o console.log para saber em qual etapa está e 'database.executar' para executar a função criada
+    console.log("Executando a InserindoCarroFavorito: \n" + inserindoCarroFavorito);
+    return database.executar(inserindoCarroFavorito);
+}
+
+function contarCarros (idUsuario) {
+    
+    var contarCarros = `
+        SELECT count(fkUsuario) as 'relacao' from carro where fkUsuario = '${idUsuario}'; 
+    `
+
+    return database.executar(contarCarros);
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
     editar,
-    deletar
+    deletar,
+    cadastrarCarro,
+    contarCarros
 }

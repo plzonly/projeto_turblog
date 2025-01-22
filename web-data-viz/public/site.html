@@ -8,6 +8,7 @@
     <title>TurBlog&copy; | Início</title>
 </head>
 <body>
+
     <body onload="atualizarFeed()">
         <div class="sidebar">
           <div class="logo">
@@ -50,6 +51,34 @@
       </div>
       <div id="feed_container"></div>
     </section>
+
+    <div class="popup" id="popup">
+      <div class="overlay"></div>
+      <div class="conteudo-pop">
+        <h2>Queimou a largada!</h2>
+        <p>Antes de começar a postar, escolha sua marca favorita abaixo!</p>
+        
+        <select id="favorito_input">
+          <option value="#" selected disabled>Selecione:</option>
+          <option value="Lamborghini">Lamborghini</option>
+          <option value="Ferrari">Ferrari</option>
+          <option value="Porsche">Porsche</option>
+          <option value="Audi">Audi</option>      
+          <option value="Pagani">Pagani</option>
+          <option value="BMW">BMW</option>
+          <option value="Lexus">Lexus</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Nissan">Nissan</option>
+          <option value="Mitsubishi">Mitsubishi</option>
+          <option value="BYD">BYD</option>
+          <option value="Outros">Outros...</option>
+        </select>
+
+        <div class="pop-control">
+          <button id="enviar" class="enviar-btn" onclick="cadastrarCarro()" >Enviar</button>
+        </div>
+      </div>
+    </div>
 
 </body>
 </html>
@@ -137,14 +166,73 @@ function limparFormulario() {
                       feed.appendChild(divPublicacao);
                   }
 
-                  finalizarAguardar();
+                  // finalizarAguardar();
               });
           } else {
               throw ('Houve um erro na API!');
           }
       }).catch(function (resposta) {
           console.error(resposta);
-          finalizarAguardar();
+          // finalizarAguardar();
       });
   }
+</script>
+
+<script>
+      function abrir(event){
+        const idUsuario = sessionStorage.getItem('ID_USUARIO');
+
+        console.log('antes do fetch')
+        fetch(`/avisos/contar/${idUsuario}`)
+        .then(
+        function(resultado){
+          resultado.json (
+          ).then (
+            function(resultado){
+              console.log(resultado);
+              if (resultado[0].relacao == 0){
+            document.querySelector(".popup").style.display = "block"
+              }
+            }
+          )
+        }
+    )
+
+    .catch (function(resultado){
+        console.log(resultado);
+    })
+  }
+
+  console.log('antes do abrir')
+  abrir();
+
+
+</script>
+
+<script>
+
+function cadastrarCarro() {
+  var carrofavVar = favorito_input.value;
+  const idUsuario = sessionStorage.getItem('ID_USUARIO');
+
+  // Enviando o valor da nova input
+  fetch("/avisos/cadastrarCarro", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // crie um atributo que recebe o valor recuperado aqui
+      // Agora vá para o arquivo routes/avisos.js
+      // Criando atributo 'CarroServer'
+      carroServer: carrofavVar,
+      idUsuario : idUsuario
+    }),
+  })
+
+    .then(function(){
+      document.querySelector(".popup").style.display = "none";
+    })
+
+}
 </script>

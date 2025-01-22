@@ -42,46 +42,20 @@ function autenticar(req, res) {
 
 }
 
-function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+async function cadastrar(req, res) {
+    try {
+        let { nomeServer: nome, emailServer: email, senhaServer: senha} = req.body;
 
-    //Criando variável 'carrofav'
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var carrofav = req.body.carroServer;
+        if (!nome || !email || !senha) {
+            return res.status(400).send("Todos os campos são obrigatórios!");
+        }
 
-    // Faça as validações dos valores
+        let resultado = await usuarioModel.cadastrar(nome, email, senha);
+        res.json(resultado);
 
-    //Incrementando a variável 'carrofav'
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (carrofav == undefined) {
-        res.status(400).send("Seu carro favorito está undefined!");
-    } else {
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-
-        //Passando o valor do 'carrofav' como parâmetro
-        usuarioModel.cadastrar(nome, email, senha, carrofav)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+    } catch (erro) {
+        console.log("Erro ao cadastrar:", erro);
+        res.status(500).json({ erro: erro.sqlMessage || "Erro desconhecido" });
     }
 }
 

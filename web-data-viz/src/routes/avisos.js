@@ -69,4 +69,13 @@ router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });
 
+router.post("/cadastrarCarro", function (req, res) {
+    console.log(req.body);
+    avisoController.cadastrarCarro(req, res);
+})
+
+router.get("/contar/:idUsuario", function (req, res) {
+    avisoController.contarCarros(req, res);
+})
+
 module.exports = router;
