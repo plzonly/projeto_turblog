@@ -56,7 +56,13 @@
             <i class='bx bx-menu'></i>
             <span class="text">Acompanhe nossa comunidade!</span>
         </div>
-        <div class="KPI">Usuarios cadastrados:<span id="graficos"></span></div>
+
+        <div class="kpis">
+            <div class="KPI">Usuarios cadastrados:<span id="graficos"></span></div>
+            <div class="KPI">Post com maior descrição: <span id="maiordesc"></span></div>
+            <div class="KPI">Usuario mais antigo: <span id="maisantigo"></span></div>
+        </div>
+
         <div id="graficos2"></div>
     </section>
 
@@ -90,7 +96,7 @@
     
         obterDadosGrafico();
     }
-    
+
     function obterDadosGrafico() {
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -101,6 +107,34 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     plotarGrafico(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
+
+        fetch(`/medidas/ultimasdesc/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGraficoDesc(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
+
+        fetch(`/medidas/ultimasantigo/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGraficoAntigo(resposta);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -124,7 +158,7 @@
             console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
         });
     }
-    
+
     function plotarGrafico(resposta) {
     
         console.log('Iniciando plotagem do gráfico...');
@@ -170,7 +204,95 @@
         );
     
     }
-      
+
+    function plotarGraficoDesc(resposta) {
+    
+    console.log('Iniciando plotagem do gráfico...');
+
+    let dados = resposta.map(item => item.usuario);
+    
+    let data = {    
+        datasets: [{
+            label: 'Post com maior descrição',
+            data: dados,
+            backgroundColor: 'rgb(55, 103, 143)',
+            borderColor: 'rgb(55, 103, 143)',
+            borderWidth: 1
+        }]
+    };
+    
+    var KPIdescricao = document.getElementById('maiordesc');
+    console.log(KPIdescricao);
+    
+    KPIdescricao.innerHTML = `${dados[0]}`;
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    myChart = new Chart(
+        document.getElementById('myChartCanvasDesc'),
+        config
+    );
+
+}
+    
+function plotarGraficoAntigo(resposta) {
+    
+    console.log('Iniciando plotagem do gráfico...');
+
+    let dados = resposta.map(item => item.usuarioantigo);
+    
+    let data = {    
+        datasets: [{
+            label: 'Usuario mais antigo',
+            data: dados,
+            backgroundColor: 'rgb(55, 103, 143)',
+            borderColor: 'rgb(55, 103, 143)',
+            borderWidth: 1
+        }]
+    };
+    
+    var KPIantigo = document.getElementById('maisantigo');
+    console.log(KPIantigo);
+    
+    KPIantigo.innerHTML = `${dados[0]}`;
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    myChart = new Chart(
+        document.getElementById('myChartCanvasAntigo'),
+        config
+    );
+
+}
+
     function plotarGrafico2(resposta) {
         let labels2 = [];
         let dados2 = [];
@@ -230,6 +352,21 @@
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
         });
+
+        fetch(`/medidas/tempo-realcarro/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    dados.datasets[0].data[0] = novoRegistro[0].total_carros;
+                    chartInstance.update();
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
     
         fetch(`/medidas/tempo-realn/`, { cache: 'no-store' })
             .then(function (response) {
@@ -250,5 +387,37 @@
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
                 proximaAtualizacao = setTimeout(() => atualizarGrafico(dados2, chartInstance), 5000);
             });
+            
+        fetch(`/medidas/tempo-realdesc/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    dados.datasets[0].data[0] = novoRegistro[0].maior_descricao;
+                    chartInstance.update();
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
+
+        fetch(`/medidas/tempo-realantigo/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    dados.datasets[0].data[0] = novoRegistro[0].antigo;
+                    chartInstance.update();
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
     }
     </script>
+
+<script>

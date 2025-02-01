@@ -19,6 +19,96 @@ function buscarUltimasMedidas(req, res) {
         });
 }
 
+function buscarAntigoEmTempoReal(req, res) {
+
+    console.log(`Recuperando o usuario mais antigo em tempo real`);
+
+    medidaModel.buscarAntigoEmTempoReal()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+            res.status(500).json({ mensagem: "Erro ao buscar usuario mais antigo em tempo real" });
+        });
+}
+
+function buscarUltimoAntigo(req, res) {
+    
+    console.log(`Recuperando as último usuario antigo`);
+
+    medidaModel.buscarUltimoAntigo()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+            res.status(500).json({ mensagem: "Erro ao buscar último usuario antigo" });
+        });
+}
+
+function buscarUltimasDesc(req, res) {
+    
+    console.log(`Recuperando as últimas descrições`);
+
+    medidaModel.buscarUltimasDesc()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+            res.status(500).json({ mensagem: "Erro ao buscar últimas descrições" });
+        });
+}
+
+function buscarDescEmTempoReal(req, res) {
+
+    console.log(`Recuperando as desrcrições em tempo real`);
+
+    medidaModel.buscarDescEmTempoReal()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+            res.status(500).json({ mensagem: "Erro ao buscar descrição em tempo real" });
+        });
+}
+
+function buscarCarrosEmTempoReal(req, res) {
+
+    console.log(`Recuperando os ultimos carros`);
+
+    medidaModel.buscarCarrosEmTempoReal()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+            res.status(500).json({ mensagem: "Erro ao buscar carros em tempo real" });
+        });
+}
+
 function buscarMedidasEmTempoReal(req, res) {
 
     console.log(`Recuperando as últimas ${limite_linhas} medidas`);
@@ -74,7 +164,12 @@ function buscarNoticiasEmTempoReal(req, res) {
 
 module.exports = {
     buscarUltimasMedidas,
+    buscarUltimasDesc,
+    buscarUltimoAntigo,
     buscarMedidasEmTempoReal,
     buscarUltimasNoticias,
+    buscarDescEmTempoReal,
+    buscarCarrosEmTempoReal,
+    buscarAntigoEmTempoReal,
     buscarNoticiasEmTempoReal
 };
